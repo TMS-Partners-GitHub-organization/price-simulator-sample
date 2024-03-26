@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Price Simulator</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="container p-6 mx-auto">
+        <div x-data="simulator" class="max-w-md mx-auto space-y-6">
+          <label class="flex items-center gap-x-2"><input x-model="dochiramo" type="checkbox"><span>さい帯・さい帯血 どちらも保管【早割】</span></label>
+          <hr>
+          <p>長期保管オプション（20年保管）</p>
+          <label class="flex items-center gap-x-2"><input x-model="choki" type="radio" value="none"><span>なし</span></label>
+          <label class="flex items-center gap-x-2"><input x-model="choki" type="radio" value="single"><span>片方</span></label>
+          <label class="flex items-center gap-x-2"><input x-model="choki" type="radio" value="double"><span>両方</span></label>
+          <hr>
+          <label class="flex items-center gap-x-2"><input x-model="ikkatsu" type="checkbox"><span>一括払い割引</span></label>
+          <hr>
+          <label class="flex items-center gap-x-2"><input x-model="repeater" type="checkbox"><span>リピーター様割引</span></label>
+          <hr>
+
+          <p class="text-center">トータルの金額: <span class="text-3xl" x-text="`¥${Number(total).toLocaleString()}`"></span></p>
+          <p class="text-center">120回分割: <span class="text-3xl" x-text="`¥${Number(dividedBy120).toLocaleString()}`"></span></p>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
