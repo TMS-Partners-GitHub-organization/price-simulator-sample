@@ -1,0 +1,17 @@
+<svg id="グループ_349" data-name="グループ 349" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="42.034" height="42.034" viewBox="0 0 42.034 42.034">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="長方形_125" data-name="長方形 125" width="42.034" height="42.034" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="グループ_118" data-name="グループ 118" clip-path="url(#clip-path)">
+    <path id="パス_432" data-name="パス 432" d="M21.017,0A21.017,21.017,0,1,1,0,21.017,21.017,21.017,0,0,1,21.017,0" fill="#ff6041"/>
+    <path id="パス_433" data-name="パス 433" d="M36.759,24.163h.854v18.3a3,3,0,1,0,6.009,0v-18.3h.835" transform="translate(-19.591 -12.878)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"/>
+    <line id="線_31" data-name="線 31" x1="2.741" transform="translate(21.29 14.836)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"/>
+    <line id="線_32" data-name="線 32" x1="2.741" transform="translate(21.29 17.458)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"/>
+    <line id="線_33" data-name="線 33" x1="2.741" transform="translate(21.29 20.08)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"/>
+    <line id="線_34" data-name="線 34" x1="2.741" transform="translate(21.29 22.703)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"/>
+    <line id="線_35" data-name="線 35" x1="2.741" transform="translate(21.29 25.325)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"/>
+    <line id="線_36" data-name="線 36" x1="2.741" transform="translate(21.29 27.947)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"/>
+  </g>
+</svg>
