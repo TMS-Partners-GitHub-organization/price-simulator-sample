@@ -1,5 +1,17 @@
 import './style.css'
 import Alpine from 'alpinejs'
+import MoveTo from 'moveto';
+
+export const initMoveTo = () => {
+  const moveTo = new MoveTo({
+    tolerance: 180,
+  });
+
+  const buttons = document.querySelectorAll<HTMLElement>("[data-moveto]");
+  buttons.forEach((button) => {
+    moveTo.registerTrigger(button);
+  });
+};
 
 // const basePrice = {
 //   simple: {

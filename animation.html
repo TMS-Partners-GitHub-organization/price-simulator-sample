@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moveto/1.8.2/moveto.min.js"></script>
   </head>
 
   <body class="font-maru">
@@ -262,167 +263,177 @@
             <div x-data="simulator"
               class="p-5 mx-auto xl:max-w-4xl lg:max-w-3xl">
               <div x-data="{ question : 1}" class="p-5 space-y-12 bg-white lg:px-24 lg:py-12 rounded-xl">
-                <div class="space-y-8">
-                  <h3 class="flex items-end justify-center gap-4 text-main">
-                    <span class="block text-center">
-                      <span class="block text-sm !leading-none font-bold">No.</span>
-                      <span class="block text-5xl !leading-none">01</span>
-                    </span>
-                    <span class="font-bold border-b-2 border-sub !leading-none lg:text-2xl text-xl ">プラン選択</span>
-                  </h3>
-                  <div class="grid max-w-xl grid-cols-1 gap-5 mx-auto font-bold lg:grid-cols-2 text-main lg:text-xl">
-                    <label for class="flex items-center gap-2.5"><input
-                        x-model="plan" value="simple" type="radio" class="text-[#FF6041]"
-                        name="plan" id><span><span class="text-2xl">ONE</span>ホーププラン</span></label>
-                    <label for class="flex items-center gap-2.5"><input
-                        x-model="plan" value="standard" type="radio" class="text-[#FF6041]"
-                        name="plan" id><span class=""><span class="text-2xl">W</span>ホーププラン</span></label>
-                  </div>
-                  <div class="text-center">
-                    <button @click="question++" x-show="question == 1" class="inline-block py-4 text-xl text-white px-7 bg-main">次の質問へ</button>
-                  </div>
-                </div>
-                <div x-cloak x-transition.opacity x-show="question >= 2" class="space-y-8">
-                  <h3 class="flex items-end justify-center gap-4 text-main">
-                    <span class="block text-center">
-                      <span class="block text-sm !leading-none font-bold">No.</span>
-                      <span class="block text-5xl !leading-none">02</span>
-                    </span>
-                    <span class="font-bold border-b-2 border-sub !leading-none lg:text-2xl text-xl ">保管年数</span>
-                  </h3>
-                  <div class="grid max-w-xl grid-cols-3 gap-5 mx-auto font-bold text-main lg:text-xl">
-                    <label for class="flex items-center gap-2.5"><input
-                        x-model="hokan" type="radio" class="text-[#FF6041]" value="10" name="hokan"
-                        id>10年</label>
-                    <label for class="flex items-center gap-2.5"><input
-                        x-model="hokan" type="radio" class="text-[#FF6041]" value="20" name="hokan"
-                        id>20年</label>
-                  </div>
-                  <div class="text-center">
-                    <button @click="question++" x-show="question == 2" class="inline-block py-4 text-xl text-white px-7 bg-main">次の質問へ</button>
-                  </div>
-                </div>
-                <div x-cloak x-transition.opacity x-show="question >= 3" class="space-y-8">
-                  <h3 class="flex items-end justify-center gap-4 text-main">
-                    <span class="block text-center">
-                      <span class="block text-sm !leading-none font-bold">No.</span>
-                      <span class="block text-5xl !leading-none">03</span>
-                    </span>
-                    <span class="font-bold border-b-2 border-sub !leading-none lg:text-2xl text-xl ">分割回数</span>
-                  </h3>
-                  <div class="grid max-w-xl grid-cols-3 gap-5 mx-auto font-bold text-main lg:text-xl">
-                    <label for class="flex items-center gap-2.5"><input
-                        x-model="kaisu" type="radio" class="text-[#FF6041]" value="12" name="kaisu"
-                        id>12回</label>
-                    <label for class="flex items-center gap-2.5"><input
-                        x-model="kaisu" type="radio" class="text-[#FF6041]" value="24" name="kaisu"
-                        id>24回</label>
-                    <label for class="flex items-center gap-2.5"><input
-                        x-model="kaisu" type="radio" class="text-[#FF6041]" value="36" name="kaisu"
-                        id>36回</label>
-                    <label for class="flex items-center gap-2.5"><input
-                        x-model="kaisu" type="radio" class="text-[#FF6041]" value="48" name="kaisu"
-                        id>48回</label>
-                    <label for class="flex items-center gap-2.5"><input
-                        x-model="kaisu" type="radio" class="text-[#FF6041]" value="60" name="kaisu"
-                        id>60回</label>
-                    <label for class="flex items-center gap-2.5"><input
-                        x-model="kaisu" type="radio" class="text-[#FF6041]" value="120" name="kaisu"
-                        id>120回</label>
-                    <label for class="col-span-3 flex items-center gap-2.5"><input
-                        x-model="kaisu" type="radio" class="text-[#FF6041]"
-                        value="ikkatsu" name="kaisu" id>一括払い（15,000円割引）</label>
-                  </div>
-                  <div class="text-center">
-                    <button @click="question++" x-show="question == 3" class="inline-block py-4 text-xl text-white px-7 bg-main">次の質問へ</button>
-                  </div>
-                </div>
-                <div x-cloak x-transition.opacity x-show="question >= 4" class="space-y-8">
-                  <h3 class="flex items-end justify-center gap-4 text-main">
-                    <span class="block text-center">
-                      <span class="block text-sm !leading-none font-bold">No.</span>
-                      <span class="block text-5xl !leading-none">04</span>
-                    </span>
-                    <span class="font-bold border-b-2 border-sub !leading-none lg:text-2xl text-xl ">各種割引</span>
-                  </h3>
-                  <div class="grid max-w-xl grid-cols-1 gap-5 mx-auto font-bold text-main lg:text-xl">
-                    <label for class="flex items-center gap-2.5"><input
-                        type="checkbox" class="text-[#FF6041]" x-model="discount" value="repeater"
-                        name="discount" id>リピーター（30,000円割引）</label>
-                    <label for class="flex items-center gap-2.5"><input
-                        type="checkbox" class="text-[#FF6041]" x-model="discount" value="tatai"
-                        name="discount" id>多胎割引（100,000円割引）</label>
-                  </div>
-                  <div class="text-center">
-                    <button @click="question++" x-show="question == 4" class="inline-block py-4 text-xl text-white px-7 bg-main">金額を見る</button>
-                  </div>
-                </div>
-                <div class="space-y-12" x-cloak x-transition.opacity x-show="question >= 5">
+                <div id="q1">
                   <div class="space-y-8">
                     <h3 class="flex items-end justify-center gap-4 text-main">
-                      <span class="font-bold !leading-none lg:text-2xl text-xl ">金額</span>
+                      <span class="block text-center">
+                        <span class="block text-sm !leading-none font-bold">No.</span>
+                        <span class="block text-5xl !leading-none">01</span>
+                      </span>
+                      <span class="font-bold border-b-2 border-sub !leading-none lg:text-2xl text-xl ">プラン選択</span>
                     </h3>
-                    <div class="border-2 border-main rounded-xl">
-                      <table class="w-full font-bold border-collapse text-main lg:text-xl ">
-                        <tbody class="">
-                          <tr>
-                            <td class="w-1/2 py-4 border-b-2 border-r-2 border-main px-7 bg-[#EEF1F6] rounded-tl-xl">年数</td>
-                            <td x-text="`${hokan}年`" class="w-1/2 py-4 border-b-2 px-7 border-main"></td>
-                          </tr>
-                          <tr>
-                            <td class="w-1/2 py-4 border-b-2 border-r-2 px-7 border-main bg-[#EEF1F6]">保管料</td>
-                            <td x-text="`¥${hokanPrice.toLocaleString()}`"
-                              class="w-1/2 py-4 border-b-2 px-7 border-main"></td>
-                          </tr>
-                          <tr>
-                            <td class="w-1/2 py-4 border-b-2 border-r-2 px-7 border-main bg-[#EEF1F6]">初期費用</td>
-                            <td x-text="`¥${shokiPrice.toLocaleString()}`"
-                              class="w-1/2 py-4 border-b-2 px-7 border-main"></td>
-                          </tr>
-                          <tr>
-                            <td class="w-1/2 py-4 border-b-2 border-r-2 px-7 border-main bg-[#EEF1F6]">検査費用</td>
-                            <td x-text="`¥${kensaPrice.toLocaleString()}`"
-                              class="w-1/2 py-4 border-b-2 px-7 border-main"></td>
-                          </tr>
-                          <tr>
-                            <td class="w-1/2 py-4 border-b-2 border-r-2 px-7 border-main bg-[#EEF1F6]">技術料</td>
-                            <td x-text="`¥${gijutsuPrice.toLocaleString()}`"
-                              class="w-1/2 py-4 border-b-2 px-7 border-main"></td>
-                          </tr>
-                          <tr>
-                            <td class="w-1/2 py-4 border-r-2 rounded-bl-xl px-7 border-main bg-[#EEF1F6]">作業費用</td>
-                            <td x-text="`¥${sagyoPrice.toLocaleString()}`"
-                              class="w-1/2 py-4 px-7 rounded-br-xl"></td>
-                          </tr>
-                        </tbody>
-                      </table>
+                    <div class="grid max-w-xl grid-cols-1 gap-5 mx-auto font-bold lg:grid-cols-2 text-main lg:text-xl">
+                      <label for class="flex items-center gap-2.5"><input
+                          x-model="plan" value="simple" type="radio" class="text-[#FF6041]"
+                          name="plan" id><span><span class="text-2xl">ONE</span>ホーププラン</span></label>
+                      <label for class="flex items-center gap-2.5"><input
+                          x-model="plan" value="standard" type="radio" class="text-[#FF6041]"
+                          name="plan" id><span class=""><span class="text-2xl">W</span>ホーププラン</span></label>
                     </div>
-                  </div>
-                  <div class="relative space-y-8">
-                    <img src="/img/top/bottom-baby.svg" alt="" class="absolute right-0 -translate-y-1/2 lg:h-auto h-3/4 top-1/2">
-                    <h3 class="flex items-end justify-center gap-4 text-main">
-                      <span class="font-bold !leading-none lg:text-2xl text-xl ">合計金額</span>
-                    </h3>
-                    <div class="flex items-baseline justify-center gap-0">
-                      <p x-text="`¥${totalPrice.toLocaleString()}`"
-                        class="text-center font-bold text-4xl text-[#FF6041]"></p>
-                      <span class="text-sm">（税込）</span>
-                    </div>
-                  </div>
-                  <div x-show="kaisu !== 'ikkatsu'" class="space-y-2">
-                    <div class="flex items-baseline justify-center gap-0">
-                      <p class>月額</p>
-                      <p x-text="`¥${monthlyPrice.toLocaleString()}`"
-                        class="text-2xl"></p>
-                      <span class="text-sm">（税込）</span>
-                    </div>
-                    <div class="flex justify-center text-sm">
-                      ※分割払いをご選択の場合、小数点以下の計算などにより初回支払額と2回以降支払額に上記と差異が生じる場合がございます。
+                    <div class="text-center">
+                      <a data-moveto href="#q2" @click="question++" x-show="question == 1" class="inline-block py-4 text-xl text-white px-7 bg-main">次の質問へ</a>
                     </div>
                   </div>
                 </div>
-                <div class="text-center">
-                  <button @click="question = 1" x-show="question == 5" class="inline-block py-4 text-xl text-white px-7 bg-main">もう一度回答する</button>
+                <div id="q2">
+                  <div x-cloak x-transition.opacity x-show="question >= 2" class="space-y-8">
+                    <h3 class="flex items-end justify-center gap-4 text-main">
+                      <span class="block text-center">
+                        <span class="block text-sm !leading-none font-bold">No.</span>
+                        <span class="block text-5xl !leading-none">02</span>
+                      </span>
+                      <span class="font-bold border-b-2 border-sub !leading-none lg:text-2xl text-xl ">保管年数</span>
+                    </h3>
+                    <div class="grid max-w-xl grid-cols-3 gap-5 mx-auto font-bold text-main lg:text-xl">
+                      <label for class="flex items-center gap-2.5"><input
+                          x-model="hokan" type="radio" class="text-[#FF6041]" value="10" name="hokan"
+                          id>10年</label>
+                      <label for class="flex items-center gap-2.5"><input
+                          x-model="hokan" type="radio" class="text-[#FF6041]" value="20" name="hokan"
+                          id>20年</label>
+                    </div>
+                    <div class="text-center">
+                      <a href="#q3" data-moveto @click="question++" x-show="question == 2" class="inline-block py-4 text-xl text-white px-7 bg-main">次の質問へ</a>
+                    </div>
+                  </div>
+                </div>
+                <div id="q3">
+                  <div x-cloak x-transition.opacity x-show="question >= 3" class="space-y-8">
+                    <h3 class="flex items-end justify-center gap-4 text-main">
+                      <span class="block text-center">
+                        <span class="block text-sm !leading-none font-bold">No.</span>
+                        <span class="block text-5xl !leading-none">03</span>
+                      </span>
+                      <span class="font-bold border-b-2 border-sub !leading-none lg:text-2xl text-xl ">分割回数</span>
+                    </h3>
+                    <div class="grid max-w-xl grid-cols-3 gap-5 mx-auto font-bold text-main lg:text-xl">
+                      <label for class="flex items-center gap-2.5"><input
+                          x-model="kaisu" type="radio" class="text-[#FF6041]" value="12" name="kaisu"
+                          id>12回</label>
+                      <label for class="flex items-center gap-2.5"><input
+                          x-model="kaisu" type="radio" class="text-[#FF6041]" value="24" name="kaisu"
+                          id>24回</label>
+                      <label for class="flex items-center gap-2.5"><input
+                          x-model="kaisu" type="radio" class="text-[#FF6041]" value="36" name="kaisu"
+                          id>36回</label>
+                      <label for class="flex items-center gap-2.5"><input
+                          x-model="kaisu" type="radio" class="text-[#FF6041]" value="48" name="kaisu"
+                          id>48回</label>
+                      <label for class="flex items-center gap-2.5"><input
+                          x-model="kaisu" type="radio" class="text-[#FF6041]" value="60" name="kaisu"
+                          id>60回</label>
+                      <label for class="flex items-center gap-2.5"><input
+                          x-model="kaisu" type="radio" class="text-[#FF6041]" value="120" name="kaisu"
+                          id>120回</label>
+                      <label for class="col-span-3 flex items-center gap-2.5"><input
+                          x-model="kaisu" type="radio" class="text-[#FF6041]"
+                          value="ikkatsu" name="kaisu" id>一括払い（15,000円割引）</label>
+                    </div>
+                    <div class="text-center">
+                      <a href="#q4" data-moveto @click="question++" x-show="question == 3" class="inline-block py-4 text-xl text-white px-7 bg-main">次の質問へ</a>
+                    </div>
+                  </div>
+                </div>
+                <div id="q4">
+                  <div x-cloak x-transition.opacity x-show="question >= 4" class="space-y-8">
+                    <h3 class="flex items-end justify-center gap-4 text-main">
+                      <span class="block text-center">
+                        <span class="block text-sm !leading-none font-bold">No.</span>
+                        <span class="block text-5xl !leading-none">04</span>
+                      </span>
+                      <span class="font-bold border-b-2 border-sub !leading-none lg:text-2xl text-xl ">各種割引</span>
+                    </h3>
+                    <div class="grid max-w-xl grid-cols-1 gap-5 mx-auto font-bold text-main lg:text-xl">
+                      <label for class="flex items-center gap-2.5"><input
+                          type="checkbox" class="text-[#FF6041]" x-model="discount" value="repeater"
+                          name="discount" id>リピーター（30,000円割引）</label>
+                      <label for class="flex items-center gap-2.5"><input
+                          type="checkbox" class="text-[#FF6041]" x-model="discount" value="tatai"
+                          name="discount" id>多胎割引（100,000円割引）</label>
+                    </div>
+                    <div class="text-center">
+                      <a href="#q5" data-moveto @click="question++" x-show="question == 4" class="inline-block py-4 text-xl text-white px-7 bg-main">金額を見る</a>
+                    </div>
+                  </div>
+                </div>
+                <div id="q5">
+                  <div class="space-y-12" x-cloak x-transition.opacity x-show="question >= 5">
+                    <div class="space-y-8">
+                      <h3 class="flex items-end justify-center gap-4 text-main">
+                        <span class="font-bold !leading-none lg:text-2xl text-xl ">金額</span>
+                      </h3>
+                      <div class="border-2 border-main rounded-xl">
+                        <table class="w-full font-bold border-collapse text-main lg:text-xl ">
+                          <tbody class="">
+                            <tr>
+                              <td class="w-1/2 py-4 border-b-2 border-r-2 border-main px-7 bg-[#EEF1F6] rounded-tl-xl">年数</td>
+                              <td x-text="`${hokan}年`" class="w-1/2 py-4 border-b-2 px-7 border-main"></td>
+                            </tr>
+                            <tr>
+                              <td class="w-1/2 py-4 border-b-2 border-r-2 px-7 border-main bg-[#EEF1F6]">保管料</td>
+                              <td x-text="`¥${hokanPrice.toLocaleString()}`"
+                                class="w-1/2 py-4 border-b-2 px-7 border-main"></td>
+                            </tr>
+                            <tr>
+                              <td class="w-1/2 py-4 border-b-2 border-r-2 px-7 border-main bg-[#EEF1F6]">初期費用</td>
+                              <td x-text="`¥${shokiPrice.toLocaleString()}`"
+                                class="w-1/2 py-4 border-b-2 px-7 border-main"></td>
+                            </tr>
+                            <tr>
+                              <td class="w-1/2 py-4 border-b-2 border-r-2 px-7 border-main bg-[#EEF1F6]">検査費用</td>
+                              <td x-text="`¥${kensaPrice.toLocaleString()}`"
+                                class="w-1/2 py-4 border-b-2 px-7 border-main"></td>
+                            </tr>
+                            <tr>
+                              <td class="w-1/2 py-4 border-b-2 border-r-2 px-7 border-main bg-[#EEF1F6]">技術料</td>
+                              <td x-text="`¥${gijutsuPrice.toLocaleString()}`"
+                                class="w-1/2 py-4 border-b-2 px-7 border-main"></td>
+                            </tr>
+                            <tr>
+                              <td class="w-1/2 py-4 border-r-2 rounded-bl-xl px-7 border-main bg-[#EEF1F6]">作業費用</td>
+                              <td x-text="`¥${sagyoPrice.toLocaleString()}`"
+                                class="w-1/2 py-4 px-7 rounded-br-xl"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="relative space-y-8">
+                      <img src="/img/top/bottom-baby.svg" alt="" class="absolute right-0 -translate-y-1/2 lg:h-auto h-3/4 top-1/2">
+                      <h3 class="flex items-end justify-center gap-4 text-main">
+                        <span class="font-bold !leading-none lg:text-2xl text-xl ">合計金額</span>
+                      </h3>
+                      <div class="flex items-baseline justify-center gap-0">
+                        <p x-text="`¥${totalPrice.toLocaleString()}`"
+                          class="text-center font-bold text-4xl text-[#FF6041]"></p>
+                        <span class="text-sm">（税込）</span>
+                      </div>
+                    </div>
+                    <div x-show="kaisu !== 'ikkatsu'" class="space-y-2">
+                      <div class="flex items-baseline justify-center gap-0">
+                        <p class>月額</p>
+                        <p x-text="`¥${monthlyPrice.toLocaleString()}`"
+                          class="text-2xl"></p>
+                        <span class="text-sm">（税込）</span>
+                      </div>
+                      <div class="flex justify-center text-sm">
+                        ※分割払いをご選択の場合、小数点以下の計算などにより初回支払額と2回以降支払額に上記と差異が生じる場合がございます。
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div x-show="question == 5"  class="p-5 text-center">
+                  <a href="#q1" data-moveto @click="question = 1" data-moveto class="inline-block py-4 text-xl text-white px-7 bg-main">もう一度回答する</a>
                 </div>
               </div>
             </div>
@@ -540,6 +551,23 @@
         </a>
       </div>
     </footer>
+    <!-- <script>
+          const moveTo = new MoveTo({
+            tolerance: 50,
+          });
+
+          const buttons = document.querySelectorAll("[data-moveto]");
+          buttons.forEach((button) => {
+            moveTo.registerTrigger(button);
+          });
+    </script> -->
+    <script type="module">
+      import { initMoveTo } from './src/main.ts'
+      
+      document.addEventListener('DOMContentLoaded', () => {
+        initMoveTo();
+      });
+    </script>
     <script type="module" src="/src/main.ts"></script>
   </body>
 
