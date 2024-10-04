@@ -33,11 +33,12 @@ export const initMoveTo = () => {
 Alpine.data('simulator', () => ({
   plan: "simple",
   hokan: "10",
-  kaisu: "ikkatsu",
+  kaisu: "120",
   discount: [] as string[],
   get hokanPrice() {
     let price = 0;
     // プラン選択
+    //simple:ONEプラン、standard:Wプラン
     if (this.plan === "simple") {
       price = 66000;
     }
@@ -69,15 +70,19 @@ Alpine.data('simulator', () => ({
     }
     return price;
   },
+  get shokiPriceAlpha(){
+    let price = this.shokiPrice + this.kensaPrice + this.gijutsuPrice + this.sagyoPrice
+    return price
+  },
   get totalPrice() {
-    let price = this.hokanPrice + this.shokiPrice + this.kensaPrice + this.gijutsuPrice + this.sagyoPrice;
+    let price = this.hokanPrice + this.shokiPriceAlpha ;// + this.kensaPrice + this.gijutsuPrice + this.sagyoPrice;
     // リピーター割引
     if(this.discount.includes("repeater")){
       price -= 30000;
     }
     //　多胎割引
     if(this.discount.includes("tatai")){
-      price -= 100000;
+      price -= 200000;
     }
     // 一括割引 
     if(this.kaisu ==="ikkatsu"){
