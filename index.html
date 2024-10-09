@@ -260,7 +260,8 @@
           <div class="relative pt-20 lg:pb-20">
             <div
               class="p-5 mx-auto xl:max-w-4xl lg:max-w-3xl">
-              <div class="p-3 space-y-6 bg-white lg:p-5 lg:space-y-12 lg:px-24 lg:py-12 rounded-xl">
+              <div class="relative p-3 space-y-6 bg-white lg:p-5 lg:space-y-12 lg:px-24 lg:py-12 rounded-xl">
+                <img src="/img/top/bottom-baby.svg" alt="" class="absolute lg:bottom-2 bottom-16 sm:bottom-12 right-2 w-14 lg:w-20">
                 <div class="space-y-6 lg:space-y-8">
                   <h3 class="flex items-end gap-4 text-sub">
                     <span class="block text-center">
@@ -309,13 +310,15 @@
                       <span class="block text-sm !leading-none font-bold">No.</span>
                       <span class="block text-5xl !leading-none">03</span>
                     </span>
-                    <span class="font-bold border-b-2 border-sub !leading-none lg:text-2xl text-xl ">分割回数</span>
+                    <span class="font-bold border-b-2 border-sub !leading-none lg:text-2xl text-xl ">お支払い方法</span>
                   </h3>
-                  <div class="grid max-w-xl grid-cols-4 gap-3 mx-auto font-bold lg:gap-5 lg:grid-cols-5 text-main">
-                    <label for class="flex items-center col-span-4 lg:col-span-3 lg:gap-2.5 gap-1 text-xl"><input
+                  <div class="grid max-w-xl grid-cols-3 gap-3 mx-auto font-bold lg:gap-5 lg:grid-cols-6 text-main">
+                    <label for class="flex items-center col-span-3 lg:col-span-6 lg:gap-2.5 gap-1 text-xl"><input
                         x-model="kaisu" type="radio" class="text-[#FF6041]"
                         value="ikkatsu" name="kaisu" id>一括払い（15,000円割引）</label>
-                    <label for class="flex col-span-4 lg:col-span-2 items-center lg:gap-2.5 gap-1 text-xl"><input
+                      <label for class="flex items-center col-span-3 lg:col-span-6 lg:gap-2.5 gap-1 text-xl"><span
+                        class="w-4 opacity-0"></span>分割払い</label>
+                    <label for class="flex items-center col-span-1 lg:gap-2.5 gap-1 text-sm"><input
                       x-model="kaisu" type="radio" class="text-[#FF6041]" value="120" name="kaisu"
                       id>120回</label>
                     <label for class="flex items-center col-span-1 lg:gap-2.5 gap-1 text-sm"><input
@@ -360,7 +363,7 @@
                           <p class="text-sm leading-relaxed">
                             お子様ごとの特別割引<br>
                             双子の場合、合計金額より200,000円割引<br>
-                            ※シミュレーターは200,000円の割引で表示しております。
+                            ※シミュレーターは100,000円の割引で表示しております。
                           </p>
                         </div>
                       </label>
@@ -409,18 +412,32 @@
                     </table>
                   </div>
                 </div>
-                <div class="relative space-y-6 lg:space-y-8">
-                  <img src="/img/top/bottom-baby.svg" alt="" class="absolute right-0 -translate-y-1/2 lg:h-auto h-3/4 top-1/2">
-                  <h3 class="flex items-end justify-center gap-4 text-sub">
-                    <span class="font-bold !leading-none lg:text-2xl text-xl ">合計金額</span>
-                  </h3>
-                  <div class="flex items-baseline justify-center gap-0">
-                    <p x-text="`¥${totalPrice.toLocaleString()}`"
-                      class="text-2xl font-medium text-center"></p>
-                    <span class="text-sm">（税込）</span>
+                <div class="relative space-y-2">
+                  <div x-show="kaisu !== 'ikkatsu'" class="space-y-2">
+                    <div class="flex items-baseline justify-center gap-2">
+                      <p class="flex justify-center">月額</p>
+                      <div class="flex items-baseline justify-center gap-0">
+                        <p x-text="`¥${monthlyPrice.toLocaleString()}`"
+                          class="text-center font-bold text-4xl text-[#FF6041]"></p>
+                        <span class="text-sm">（税込）</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="relative flex items-baseline justify-center gap-2">
+                    <h3 class="flex items-end justify-center gap-4 text-sub">
+                      <span class="font-bold !leading-none text-xs">合計金額</span>
+                    </h3>
+                    <div class="flex items-baseline justify-center gap-0">
+                      <p x-text="`¥${totalPrice.toLocaleString()}`"
+                        class="text-lg font-medium text-center"></p>
+                      <span class="text-xs">（税込）</span>
+                    </div>
+                  </div>
+                  <div class="flex justify-center text-xs">
+                    ※分割払いをご選択の場合、小数点以下の計算などにより初回支払額と2回以降支払額に上記と差異が生じる場合がございます。
                   </div>
                 </div>
-                <div x-show="kaisu !== 'ikkatsu'" class="space-y-2">
+                <!-- <div x-show="kaisu !== 'ikkatsu'" class="space-y-2">
                   <div class="flex items-baseline justify-center gap-0">
                     <p class>月額</p>
                     <p x-text="`¥${monthlyPrice.toLocaleString()}`"
@@ -431,6 +448,17 @@
                     ※分割払いをご選択の場合、小数点以下の計算などにより初回支払額と2回以降支払額に上記と差異が生じる場合がございます。
                   </div>
                 </div>
+                <div class="relative space-y-6 lg:space-y-8">
+                  <img src="/img/top/bottom-baby.svg" alt="" class="absolute right-0 -translate-y-1/2 lg:h-auto h-3/4 top-1/2">
+                  <h3 class="flex items-end justify-center gap-4 text-sub">
+                    <span class="font-bold !leading-none lg:text-2xl text-xl ">合計金額</span>
+                  </h3>
+                  <div class="flex items-baseline justify-center gap-0">
+                    <p x-text="`¥${totalPrice.toLocaleString()}`"
+                      class="text-2xl font-medium text-center"></p>
+                    <span class="text-sm">（税込）</span>
+                  </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -529,40 +557,42 @@
           <img class="w-40 mx-auto lg:w-auto" src="/img/logo-big.svg" alt>
         </div>
       </div>
-      <div class="pt-2 pb-28 bg-blueen lg:py-5">
+      <div class="pt-2 pb-36 bg-blueen lg:pt-5 lg:pb-28">
         <p class="text-xs font-bold text-center text-white">Copyright © StemCell Institute. All Rights Reserved.</a>
       </div>
       <div class="fixed inset-x-0 bottom-0 grid grid-cols-2 bg-white lg:space-y-5 lg:block lg:right-10 lg:bottom-6 lg:left-auto lg:bg-transparent">
-        <div class="col-span-2 bg-sub/10 lg:hidden">
-          <div class="relative grid items-center grid-cols-2 py-2">
-            <h3 class="flex items-end justify-center gap-4 text-sub">
-              <span class="font-bold !leading-none lg:text-2xl text-xl ">合計金額</span>
-            </h3>
-            <div class="flex items-baseline justify-center gap-0">
-              <p x-text="`¥${totalPrice.toLocaleString()}`"
-                class="text-2xl font-medium text-center"></p>
-              <span class="text-sm">（税込）</span>
-            </div>
-          </div>
-          <!-- <div x-show="kaisu !== 'ikkatsu'" class="space-y-2">
-            <div class="grid items-center justify-center grid-cols-2 gap-0">
-              <p class="flex justify-center">月額</p>
-              <div class="flex items-baseline justify-center gap-0">
-                <p x-text="`¥${monthlyPrice.toLocaleString()}`"
-                  class="text-center font-bold text-4xl text-[#FF6041]"></p>
-                <span class="text-sm">（税込）</span>
+        <div class="static bottom-0 w-full col-span-2 bg-white lg:fixed left-1/2 lg:-translate-x-1/2">
+          <div class="py-2 bg-sub/10">
+            <div x-show="kaisu !== 'ikkatsu'" class="lg:mb-2">
+              <div class="flex items-baseline justify-center gap-2">
+                <p class="flex justify-center">月額</p>
+                <div class="flex items-baseline justify-center gap-0">
+                  <p x-text="`¥${monthlyPrice.toLocaleString()}`"
+                    class="text-center font-bold text-4xl text-[#FF6041]"></p>
+                  <span class="text-sm">（税込）</span>
+                </div>
               </div>
             </div>
-          </div> -->
+            <div class="relative flex items-baseline justify-center gap-2">
+              <h3 class="flex items-end justify-center gap-4 text-sub">
+                <span class="font-bold !leading-none text-xs">合計金額</span>
+              </h3>
+              <div class="flex items-baseline justify-center gap-0">
+                <p x-text="`¥${totalPrice.toLocaleString()}`"
+                  class="text-lg font-medium text-center"></p>
+                <span class="text-xs">（税込）</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <a href="https://www.stemcell.co.jp/lp/new-entry/?utm_source=ownedmedia&utm_medium=organic&utm_campaign=service&ad=HP" target="_blank" class="flex items-center justify-center pt-1 space-y-1 text-sm text-center text-white border-r lg:border-r-0 border-r-white lg:w-24 lg:rounded-full bg-main lg:aspect-square">
-          <div class="text-center">
+        <a href="https://www.stemcell.co.jp/lp/new-entry/?utm_source=ownedmedia&utm_medium=organic&utm_campaign=service&ad=HP" target="_blank" class="relative flex items-center justify-center py-2 space-y-1 text-sm text-center text-white border-r lg:pb-0 lg:pt-1 lg:border-r-0 border-r-white lg:w-24 lg:rounded-full bg-main lg:aspect-square">
+          <div class="flex items-center gap-2 text-center lg:block">
             <img src="/img/fix1.svg" width="40" alt="" class="mx-auto">
             <span>資料請求</span>
           </div>
         </a>
-        <a href="" class="flex items-center justify-center pt-1 space-y-1 text-sm text-center text-white lg:w-24 lg:rounded-full bg-main lg:aspect-square">
-          <div class="text-center">
+        <a href="" class="relative flex items-center justify-center py-2 space-y-1 text-sm text-center text-white lg:pb-0 lg:pt-1 lg:w-24 lg:rounded-full bg-main lg:aspect-square">
+          <div class="flex items-center gap-2 text-center lg:block">
             <img src="/img/fix3.svg" width="40" alt="" class="mx-auto">
             <span>チャット</span>
           </div>

@@ -82,7 +82,7 @@ Alpine.data('simulator', () => ({
     }
     //　多胎割引
     if(this.discount.includes("tatai")){
-      price -= 200000;
+      price -= 100000;
     }
     // 一括割引 
     if(this.kaisu ==="ikkatsu"){
