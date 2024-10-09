@@ -261,7 +261,6 @@
             <div
               class="p-5 mx-auto xl:max-w-4xl lg:max-w-3xl">
               <div class="relative p-3 space-y-6 bg-white lg:p-5 lg:space-y-12 lg:px-24 lg:py-12 rounded-xl">
-                <img src="/img/top/bottom-baby.svg" alt="" class="absolute lg:bottom-2 bottom-16 sm:bottom-12 right-2 w-14 lg:w-20">
                 <div class="space-y-6 lg:space-y-8">
                   <h3 class="flex items-end gap-4 text-sub">
                     <span class="block text-center">
@@ -316,24 +315,26 @@
                     <label for class="flex items-center col-span-3 lg:col-span-6 lg:gap-2.5 gap-1 text-xl"><input
                         x-model="kaisu" type="radio" class="text-[#FF6041]"
                         value="ikkatsu" name="kaisu" id>一括払い（15,000円割引）</label>
-                      <label for class="flex items-center col-span-3 lg:col-span-6 lg:gap-2.5 gap-1 text-xl"><span
-                        class="w-4 opacity-0"></span>分割払い</label>
-                    <label for class="flex items-center col-span-1 lg:gap-2.5 gap-1 text-sm"><input
-                      x-model="kaisu" type="radio" class="text-[#FF6041]" value="120" name="kaisu"
-                      id>120回</label>
-                    <label for class="flex items-center col-span-1 lg:gap-2.5 gap-1 text-sm"><input
+                    <div class="flex col-span-3 gap-4 lg:col-span-6">
+                      <label for class="flex items-center col-span-3 lg:col-span-3 lg:gap-2.5 gap-1 text-xl"><span
+                          class="w-4 opacity-0"></span>分割払い</label>
+                      <label for class="flex items-center col-span-1 lg:justify-start justify-center lg:col-span-3 lg:gap-2.5 gap-1 text-xl"><input
+                        x-model="kaisu" type="radio" class="text-[#FF6041]" value="120" name="kaisu"
+                        id>120回</label>
+                    </div>
+                    <label for class="flex items-center col-span-1 lg:justify-start justify-center lg:gap-2.5 gap-1 text-sm"><input
                         x-model="kaisu" type="radio" class="text-[#FF6041]" value="12" name="kaisu"
                         id>12回</label>
-                    <label for class="flex items-center col-span-1 lg:gap-2.5 gap-1 text-sm"><input
+                    <label for class="flex items-center col-span-1 lg:justify-start justify-center lg:gap-2.5 gap-1 text-sm"><input
                         x-model="kaisu" type="radio" class="text-[#FF6041]" value="24" name="kaisu"
                         id>24回</label>
-                    <label for class="flex items-center col-span-1 lg:gap-2.5 gap-1 text-sm"><input
+                    <label for class="flex items-center col-span-1 lg:justify-start justify-center lg:gap-2.5 gap-1 text-sm"><input
                         x-model="kaisu" type="radio" class="text-[#FF6041]" value="36" name="kaisu"
                         id>36回</label>
-                    <label for class="flex items-center col-span-1 lg:gap-2.5 gap-1 text-sm"><input
+                    <label for class="flex items-center col-span-1 lg:justify-start justify-center lg:gap-2.5 gap-1 text-sm"><input
                         x-model="kaisu" type="radio" class="text-[#FF6041]" value="48" name="kaisu"
                         id>48回</label>
-                    <label for class="flex items-center col-span-1 lg:gap-2.5 gap-1 text-sm"><input
+                    <label for class="flex items-center col-span-1 lg:justify-start justify-center lg:gap-2.5 gap-1 text-sm"><input
                         x-model="kaisu" type="radio" class="text-[#FF6041]" value="60" name="kaisu"
                         id>60回</label>
                   </div>
@@ -361,9 +362,11 @@
                         <div class="space-y-3">
                           <p>多胎妊娠の方割引（100,000円割引/人）</p>
                           <p class="text-sm leading-relaxed">
-                            お子様ごとの特別割引<br>
-                            双子の場合、合計金額より200,000円割引<br>
-                            ※シミュレーターは100,000円の割引で表示しております。
+                            お子様おひとりあたり100,000円の特別割引<br>
+                            <span class="text-xs">
+                              （双子の場合、2契約の合計金額より200,000円割引）<br>
+                              ※シミュレーターは100,000円の割引で表示しております。
+                            </span>
                           </p>
                         </div>
                       </label>
@@ -433,10 +436,12 @@
                       <span class="text-xs">（税込）</span>
                     </div>
                   </div>
-                  <div class="flex justify-center text-xs">
+                  <div class="flex justify-center pt-8 text-xs">
                     ※分割払いをご選択の場合、小数点以下の計算などにより初回支払額と2回以降支払額に上記と差異が生じる場合がございます。
                   </div>
                 </div>
+                <img src="/img/top/bottom-baby.svg" alt="" class="absolute lg:bottom-2 bottom-16 sm:bottom-12 right-2 w-14 lg:w-20">
+
                 <!-- <div x-show="kaisu !== 'ikkatsu'" class="space-y-2">
                   <div class="flex items-baseline justify-center gap-0">
                     <p class>月額</p>
