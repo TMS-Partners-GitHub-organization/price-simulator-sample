@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
   </head>
 
-  <body class="font-maru">
+  <body x-data="simulator"  id="app" class="font-maru">
     <div class="fixed inset-0 bg-black bg-opacity-25" x-data
       x-trap.noscroll="$store.mobileNavigation.isOpen" x-cloak
       x-transition.opacity x-show="$store.mobileNavigation.isOpen"
@@ -256,9 +256,9 @@
     <div class="bg-[#D1EFFF] py-10">
       <div class="relative">
         <img class="absolute inset-x-0 top-0 w-full" src="/img/top/hopecell.svg" alt>
-        <div id="app">
+        <div>
           <div class="relative pt-20 lg:pb-20">
-            <div x-data="simulator"
+            <div
               class="p-5 mx-auto xl:max-w-4xl lg:max-w-3xl">
               <div class="p-3 space-y-6 bg-white lg:p-5 lg:space-y-12 lg:px-24 lg:py-12 rounded-xl">
                 <div class="space-y-6 lg:space-y-8">
@@ -529,10 +529,32 @@
           <img class="w-40 mx-auto lg:w-auto" src="/img/logo-big.svg" alt>
         </div>
       </div>
-      <div class="pt-2 pb-16 bg-blueen lg:py-5">
+      <div class="pt-2 pb-28 bg-blueen lg:py-5">
         <p class="text-xs font-bold text-center text-white">Copyright © StemCell Institute. All Rights Reserved.</a>
       </div>
-      <div class="fixed inset-x-0 bottom-0 grid grid-cols-2 lg:space-y-5 lg:block lg:right-10 lg:bottom-6 lg:left-auto">
+      <div class="fixed inset-x-0 bottom-0 grid grid-cols-2 bg-white lg:space-y-5 lg:block lg:right-10 lg:bottom-6 lg:left-auto lg:bg-transparent">
+        <div class="col-span-2 bg-sub/10 lg:hidden">
+          <div class="relative grid items-center grid-cols-2 py-2">
+            <h3 class="flex items-end justify-center gap-4 text-sub">
+              <span class="font-bold !leading-none lg:text-2xl text-xl ">合計金額</span>
+            </h3>
+            <div class="flex items-baseline justify-center gap-0">
+              <p x-text="`¥${totalPrice.toLocaleString()}`"
+                class="text-2xl font-medium text-center"></p>
+              <span class="text-sm">（税込）</span>
+            </div>
+          </div>
+          <!-- <div x-show="kaisu !== 'ikkatsu'" class="space-y-2">
+            <div class="grid items-center justify-center grid-cols-2 gap-0">
+              <p class="flex justify-center">月額</p>
+              <div class="flex items-baseline justify-center gap-0">
+                <p x-text="`¥${monthlyPrice.toLocaleString()}`"
+                  class="text-center font-bold text-4xl text-[#FF6041]"></p>
+                <span class="text-sm">（税込）</span>
+              </div>
+            </div>
+          </div> -->
+        </div>
         <a href="https://www.stemcell.co.jp/lp/new-entry/?utm_source=ownedmedia&utm_medium=organic&utm_campaign=service&ad=HP" target="_blank" class="flex items-center justify-center pt-1 space-y-1 text-sm text-center text-white border-r lg:border-r-0 border-r-white lg:w-24 lg:rounded-full bg-main lg:aspect-square">
           <div class="text-center">
             <img src="/img/fix1.svg" width="40" alt="" class="mx-auto">
