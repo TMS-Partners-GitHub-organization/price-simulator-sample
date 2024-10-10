@@ -51,7 +51,7 @@ Alpine.data('simulator', () => ({
     }
     return price;
   },
-  get shokiPrice() {  
+  get shokiPrice() {
     let price = 0;
     if (this.plan === "simple") {
       price = 22000;
@@ -70,37 +70,43 @@ Alpine.data('simulator', () => ({
     }
     return price;
   },
-  get shokiPriceAlpha(){
+  get shokiPriceAlpha() {
     let price = this.shokiPrice + this.kensaPrice + this.gijutsuPrice + this.sagyoPrice
     return price
   },
   get totalPrice() {
-    let price = this.hokanPrice + this.shokiPriceAlpha ;// + this.kensaPrice + this.gijutsuPrice + this.sagyoPrice;
+    let price = this.hokanPrice + this.shokiPriceAlpha;// + this.kensaPrice + this.gijutsuPrice + this.sagyoPrice;
     // リピーター割引
-    if(this.discount.includes("repeater")){
+    if (this.discount.includes("repeater")) {
       price -= 30000;
     }
     //　多胎割引
-    if(this.discount.includes("tatai")){
+    if (this.discount.includes("tatai")) {
       price -= 100000;
     }
     // 一括割引 
-    if(this.kaisu ==="ikkatsu"){
-      price -= 15000;
+    if (this.kaisu === "ikkatsu") {
+      if (this.plan === "simple") {
+        price -= 15000;
+      }
+      if (this.plan === "standard") {
+        price -= 20000;
+      }
+      // price -= 15000;
     }
     return price;
   },
-  get monthlyPrice(){
+  get monthlyPrice() {
     let price = this.totalPrice;
     // 一括
-    if(this.kaisu === "ikkatsu"){
+    if (this.kaisu === "ikkatsu") {
       return null;
     }
     // 回数で割る
     price /= Number(this.kaisu);
     // 小数点以下切り捨て
     price = Math.floor(price);
-    return price ;
+    return price;
   },
   // base: 357600,
   // dochiramo: false,
