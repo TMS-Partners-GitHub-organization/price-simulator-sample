@@ -353,33 +353,31 @@
                     <span class="font-bold border-b-2 border-sub !leading-none lg:text-2xl text-xl ">各種割引</span>
                   </h3>
                   <div class="grid max-w-xl grid-cols-1 gap-5 mx-auto font-bold text-main lg:text-xl">
-                    <label for class="flex items-baseline lg:gap-2.5 gap-1"><input
-                        type="radio" class="text-[#FF6041]" x-model="discount" value="repeater"
-                        name="discount" id>
-                        <div class="space-y-3">
-                          <p>リピーターさま割引（30,000円割引）</p>
-                          <p class="text-sm">当社に保管されたことがある方への特別割引</p>
-                        </div>
-                      </label>
-                    <label for class="flex items-baseline lg:gap-2.5 gap-1"><input
-                        type="radio" class="text-[#FF6041]" x-model="discount" value="tatai"
-                        name="discount" id>
-                        <div class="space-y-3">
-                          <p>多胎妊娠の方割引（100,000円割引/人）</p>
-                          <p class="text-sm leading-relaxed">
-                            お子様おひとりあたり100,000円の特別割引<br>
-                            <span class="text-xs">
-                              （双子の場合、2契約の合計金額より200,000円割引）<br>
-                              ※シミュレーターは100,000円の割引で表示しております。
-                            </span>
-                          </p>
-                        </div>
-                      </label>
+                    <label for="repeater" class="flex items-baseline lg:gap-2.5 gap-1">
+                      <input type="checkbox" class="text-[#FF6041]" x-model="discount" value="repeater" name="discount" id="repeater" @click="discount = discount.includes('repeater') ? [] : ['repeater']">
+                      <div class="space-y-3">
+                        <p>リピーターさま割引（30,000円割引）</p>
+                        <p class="text-sm">当社に保管されたことがある方への特別割引</p>
+                      </div>
+                    </label>
+                    <label for="tatai" class="flex items-baseline lg:gap-2.5 gap-1">
+                      <input type="checkbox" class="text-[#FF6041]" x-model="discount" value="tatai" name="discount" id="tatai" @click="discount = discount.includes('tatai') ? [] : ['tatai']">
+                      <div class="space-y-3">
+                        <p>多胎妊娠の方割引（100,000円割引/人）</p>
+                        <p class="text-sm leading-relaxed">
+                          お子様おひとりあたり100,000円の特別割引<br>
+                          <span class="text-xs">
+                            （双子の場合、2契約の合計金額より200,000円割引）<br>
+                            ※シミュレーターは100,000円の割引で表示しております。
+                          </span>
+                        </p>
+                      </div>
+                    </label>
                   </div>
                 </div>
                 <div class="space-y-6 lg:space-y-8">
-                  <h3 class="flex items-end justify-center gap-4 text-sub">
-                    <span class="font-bold !leading-none lg:text-2xl text-xl ">金額</span>
+                  <h3 class="flex items-end justify-center gap-4 text-main">
+                    <span class="font-bold !leading-none lg:text-2xl text-xl ">料金内訳</span>
                   </h3>
                   <div class="border-2 border-main rounded-xl">
                     <table class="w-full font-bold border-collapse text-main lg:text-xl">
@@ -397,9 +395,14 @@
                             class="w-1/2 px-2 py-4 border-b-2 lg:px-7 border-main"></td>
                         </tr>
                         <tr>
-                          <td class="w-1/2 py-4 border-b-0 border-r-2 lg:px-7 px-2 border-main rounded-bl-xl bg-[#EEF1F6]">初期費用</td>
+                          <td class="w-1/2 py-4 border-r-2 border-b-2 lg:px-7 px-2 border-main bg-[#EEF1F6]">初期費用</td>
                           <td x-text="`¥${shokiPriceAlpha.toLocaleString()}`"
-                            class="w-1/2 px-2 py-4 border-b-0 lg:px-7 border-main"></td>
+                            class="w-1/2 px-2 py-4 border-b-2 lg:px-7 border-main"></td>
+                        </tr>
+                        <tr>
+                          <td class="w-1/2 py-4 border-b-0 border-r-2 lg:px-7 px-2 border-main rounded-bl-xl bg-[#EEF1F6]">割引</td>
+                          <td x-text="`¥${discountPrice.toLocaleString()}`"
+                            class="w-1/2 px-2 py-4 border-b-0 lg:px-7 border-main text-sub"></td>
                         </tr>
                         <!-- <tr>
                           <td class="w-1/2 py-4 border-b-2 border-r-2 lg:px-7 px-2 border-main bg-[#EEF1F6]">検査費用</td>
@@ -423,40 +426,43 @@
                 <div class="relative space-y-2">
                   <div x-show="kaisu !== 'ikkatsu'" class="space-y-2">
                     <div class="flex items-baseline justify-center gap-2">
-                      <p class="flex justify-center">月額</p>
+                      <p class="flex justify-center text-main">月額</p>
                       <div class="flex items-baseline justify-center gap-0">
                         <p x-text="`¥${monthlyPrice.toLocaleString()}`"
-                          class="text-center font-bold text-4xl text-[#FF6041]"></p>
-                        <span class="text-sm">（税込）</span>
+                          class="text-4xl font-bold text-center text-sub"></p>
+                        <span class="text-sm text-main">（税込）</span>
                       </div>
                     </div>
                   </div>
                   <div x-show="kaisu !== 'ikkatsu'" class="relative flex items-baseline justify-center gap-2">
-                    <h3 class="flex items-end justify-center gap-4 text-sub">
-                      <span class="font-bold !leading-none text-xs">合計金額</span>
+                    <h3 class="flex items-end justify-center gap-4 text-main">
+                      <span class="!leading-none text-xs">合計金額</span>
                     </h3>
                     <div class="flex items-baseline justify-center gap-0">
                       <p x-text="`¥${totalPrice.toLocaleString()}`"
-                        class="text-lg font-medium text-center"></p>
-                      <span class="text-xs">（税込）</span>
+                        class="text-lg font-medium text-center text-sub"></p>
+                      <span class="text-xs text-main">（税込）</span>
                     </div>
                   </div>
                   <div x-show="kaisu == 'ikkatsu'" class="relative flex items-baseline justify-center gap-2">
-                    <h3 class="flex items-end justify-center gap-4 text-sub">
-                      <span class="font-bold !leading-none text-lg">金額</span>
+                    <h3 class="flex items-end justify-center gap-4 text-main">
+                      <span class="!leading-none text-lg">合計金額</span>
                     </h3>
                     <div class="flex items-baseline justify-center gap-0">
                       <p x-text="`¥${totalPrice.toLocaleString()}`"
-                        class="text-3xl font-medium text-center"></p>
-                      <span class="text-sm">（税込）</span>
+                        class="text-3xl font-bold text-center text-sub"></p>
+                      <span class="text-sm text-main">（税込）</span>
                     </div>
                   </div>
-                  <div x-show="discount.includes('tatai')" class="text-xs text-center">お子様おひとりあたり</div>
-                  <div class="flex justify-center pt-8 text-xs">
-                    ※分割払いをご選択の場合、小数点以下の計算などにより初回支払額と2回以降支払額に上記と差異が生じる場合がございます。
+                  <div x-show="discount.includes('tatai')" class="text-xs text-center text-main">お子様おひとりあたり</div>
+                  <div class="flex justify-center pt-14 text-[10px] text-main">
+                    ※価格は全て税込価格です。<br>
+                    ※お客様都合による途中解約は出来かねます。<br>
+                    ※各種割引やキャンペーン内容予告なく変更・終了させていただく可能性があります。<br>
+                    ※分割払いをご選択の場合、小数点以下の計算などにより初回支払額と2回以降支払額に上記と差異が生じる場合がございます。<br>
                   </div>
                 </div>
-                <img src="/img/top/bottom-baby.svg" alt="" class="absolute lg:bottom-2 bottom-16 sm:bottom-12 right-2 w-14 lg:w-20">
+                <img src="/img/top/bottom-baby.svg" alt="" class="absolute !mt-0 lg:bottom-2 bottom-20 sm:bottom-12 right-2 w-14 lg:w-20">
 
                 <!-- <div x-show="kaisu !== 'ikkatsu'" class="space-y-2">
                   <div class="flex items-baseline justify-center gap-0">
@@ -586,35 +592,35 @@
           <div class="relative py-2 bg-sub/10">
             <div x-show="kaisu !== 'ikkatsu'" class="lg:mb-1">
               <div class="flex items-baseline justify-center gap-2">
-                <p class="flex justify-center">月額</p>
+                <p class="flex justify-center text-main">月額</p>
                 <div class="flex items-baseline justify-center gap-0">
                   <p x-text="`¥${monthlyPrice.toLocaleString()}`"
-                    class="text-center font-bold text-4xl text-[#FF6041]"></p>
-                  <span class="text-sm">（税込）</span>
+                    class="text-4xl font-bold text-center text-sub"></p>
+                  <span class="text-sm text-main">（税込）</span>
                 </div>
               </div>
             </div>
             <div x-show="kaisu !== 'ikkatsu'" class="relative flex items-baseline justify-center gap-2">
-              <h3 class="flex items-end justify-center gap-4 text-sub">
-                <span class="font-bold !leading-none text-xs">合計金額</span>
+              <h3 class="flex items-end justify-center gap-4">
+                <span class="!leading-none text-xs text-main">合計金額</span>
               </h3>
               <div class="flex items-baseline justify-center gap-0">
                 <p x-text="`¥${totalPrice.toLocaleString()}`"
-                  class="text-lg font-medium text-center"></p>
-                <span class="text-xs">（税込）</span>
+                  class="text-lg font-medium text-center text-sub"></p>
+                <span class="text-xs text-main">（税込）</span>
               </div>
             </div>
             <div x-show="kaisu == 'ikkatsu'" class="relative flex items-baseline justify-center gap-2 py-5">
-              <h3 class="flex items-end justify-center gap-4 text-sub">
-                <span class="font-bold !leading-none text-lg">金額</span>
+              <h3 class="flex items-end justify-center gap-4">
+                <span class="!leading-none text-lg text-main">合計金額</span>
               </h3>
               <div class="flex items-baseline justify-center gap-0">
                 <p x-text="`¥${totalPrice.toLocaleString()}`"
-                  class="text-3xl font-medium text-center"></p>
-                <span class="text-sm">（税込）</span>
+                  class="text-3xl font-bold text-center text-sub"></p>
+                <span class="text-sm text-main">（税込）</span>
               </div>
             </div>
-            <div x-show="discount.includes('tatai')" class="text-xs text-center">お子様おひとりあたり</div>
+            <div x-show="discount.includes('tatai')" class="text-xs text-center text-main">お子様おひとりあたり</div>
           </div>
         </div>
         <a href="https://www.stemcell.co.jp/lp/new-entry/?utm_source=ownedmedia&utm_medium=organic&utm_campaign=service&ad=HP" target="_blank" class="relative flex items-center justify-center py-2 space-y-1 text-sm text-center text-white border-r lg:pb-0 lg:pt-1 lg:border-r-0 border-r-white lg:w-24 lg:rounded-full bg-main lg:aspect-square">

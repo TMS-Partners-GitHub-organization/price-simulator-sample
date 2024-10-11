@@ -74,6 +74,27 @@ Alpine.data('simulator', () => ({
     let price = this.shokiPrice + this.kensaPrice + this.gijutsuPrice + this.sagyoPrice
     return price
   },
+  get discountPrice() {
+    let price = 0
+    if (this.discount.includes("repeater")) {
+      price -= 30000;
+    }
+    //　多胎割引
+    if (this.discount.includes("tatai")) {
+      price -= 100000;
+    }
+    // 一括割引 
+    if (this.kaisu === "ikkatsu") {
+      if (this.plan === "simple") {
+        price -= 15000;
+      }
+      if (this.plan === "standard") {
+        price -= 20000;
+      }
+      // price -= 15000;
+    }
+    return price
+  },
   get totalPrice() {
     let price = this.hokanPrice + this.shokiPriceAlpha;// + this.kensaPrice + this.gijutsuPrice + this.sagyoPrice;
     // リピーター割引
